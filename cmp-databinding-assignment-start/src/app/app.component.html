@@ -22,7 +22,7 @@
     <div class="row">
       <app-even *ngIf="num % 2 == 0; else odd" [num]="num"></app-even>
       <ng-template #odd>
-        <app-odd #odd [num]="num"></app-odd>
+        <app-odd [num]="num"></app-odd>
       </ng-template>
     </div>
   </div>
