@@ -5,17 +5,15 @@ import { CounterService } from './counter.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [UsersService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
-  activeUsers: string[] = [];
-  inactiveUsers: string[] = [];
   activeToInactive: number = 0;
   inactiveToActive: number = 0;
 
-  constructor(private usersService: UsersService,
-              private counterService: CounterService) {
+  constructor(private counterService: CounterService) {
                 this.counterService.activeToInactiveEmitter.subscribe(
                   (total: number) => this.activeToInactive = total
                 )
@@ -23,9 +21,4 @@ export class AppComponent implements OnInit{
                   (total: number) => this.inactiveToActive = total
                 )
               }
-
-  ngOnInit() {
-    this.activeUsers = this.usersService.activeUsers;
-    this.inactiveUsers = this.usersService.inactiveUsers;
-  }
 }
